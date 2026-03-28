@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Abderrahmane Oubella</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = { darkMode: 'class' }
+
+        function showPage(id, btnElement) {
+            const sections = document.getElementsByClassName('page-section');
+            for (let i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+                sections[i].classList.remove('active');
+            }
+            const target = document.getElementById(id);
+            target.style.display = 'block';
+            target.classList.add('active');
+
+            const buttons = document.getElementsByClassName('nav-btn');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active', 'text-blue-600', 'dark:text-blue-400');
+                buttons[i].classList.add('text-gray-400');
+            }
+            btnElement.classList.add('active', 'text-blue-600', 'dark:text-blue-400');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let isFr = true;
+        function swapLang() {
+            isFr = !isFr;
+            const frTxt = document.querySelectorAll('.fr-txt');
+            const enTxt = document.querySelectorAll('.en-txt');
+            frTxt.forEach(el => el.style.display = isFr ? 'inline' : 'none');
+            enTxt.forEach(el => el.style.display = isFr ? 'none' : 'inline');
+            document.getElementById('langBtn').innerText = isFr ? "EN" : "FR";
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            document.getElementById('themeBtn').innerHTML = isDark ? "☀️" : "🌙";
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: 0.3s; }
+        .nav-btn { cursor: pointer; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; background: none; border: none; }
+        .page-section { display: none; opacity: 0; }
+        .page-section.active { display: block; opacity: 1; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .skill-tag { border: 1px solid #e5e7eb; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-[#0b0f1a] dark:text-gray-100">
+
+    <nav class="fixed top-0 w-full bg-white/90 dark:bg-[#0b0f1a]/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
+            
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 md:gap-3">
+                    <img src="abdooologo.png" alt="Logo" class="w-8 h-8 md:w-10 md:h-10 object-contain">
+                    <div class="font-black tracking-tighter text-sm md:text-xl uppercase italic">
+                        <span class="hidden sm:inline">Abderrahmane</span><span class="sm:hidden">A.</span> <span class="text-blue-600 dark:text-blue-400">Oubella</span>
+                    </div>
+                </div>
+                <button onclick="toggleDarkMode()" id="themeBtn" class="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg text-lg shadow-inner ml-2 md:ml-4">🌙</button>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-6">
+                    <button onclick="showPage('accueil', this)" class="nav-btn active text-blue-600 dark:text-blue-400">
+                        <span class="fr-txt">Accueil</span><span class="en-txt" style="display:none;">Home</span>
+                    </button>
+                    <button onclick="showPage('experience', this)" class="nav-btn text-gray-400">
+                        <span class="fr-txt">Expériences</span><span class="en-txt" style="display:none;">Experience</span>
+                    </button>
+                    <button onclick="showPage('contact', this)" class="nav-btn text-gray-400">
+                        <span class="fr-txt">Contact</span><span class="en-txt" style="display:none;">Contact</span>
+                    </button>
+                </div>
+                <button onclick="swapLang()" id="langBtn" class="font-black text-[10px] border-2 border-blue-600 px-3 py-1 rounded-md text-blue-600 dark:border-blue-400 dark:text-blue-400">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto pt-44 pb-20 px-6">
+
+        <section id="accueil" class="page-section active" style="display:block;">
+            <div class="flex flex-col md:flex-row items-center gap-12 mb-24">
+                <div class="w-48 h-48 rounded-[2rem] border-4 border-blue-600 overflow-hidden shadow-2xl bg-white dark:bg-gray-800 flex-shrink-0">
+                    <img src="profile.jpeg" alt="Photo" class="w-full h-full object-cover">
+                </div>
+                <div class="text-center md:text-left">
+                    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 uppercase leading-tight">Abderrahmane <br> <span class="text-blue-600 dark:text-blue-400">Oubella</span></h1>
+                    <p class="text-xl font-medium text-gray-500 dark:text-gray-400 italic fr-txt uppercase tracking-tighter">Éducation Primaire & Innovation Technologique</p>
+                    <p class="text-xl font-medium text-gray-500 dark:text-gray-400 italic en-txt uppercase tracking-tighter" style="display:none;">Primary Education & Tech Innovation</p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-3">
+                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">VP Robotics Club</span>
+                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">Spécialiste Amazigh</span>
+                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">STEAM Certified</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-gray-100 dark:border-gray-800 pt-16">
+                <div class="space-y-4">
+                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest fr-txt">Profil Professionnel</h2>
+                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest en-txt" style="display:none;">Professional Profile</h2>
+                    <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed fr-txt">Vice-Président du club de robotique universitaire. Je fusionne pédagogie et IA pour digitaliser l'enseignement de l'Amazigh.</p>
+                    <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed en-txt" style="display:none;">University Robotics Club VP. I merge pedagogy and AI to digitalize Amazigh language teaching.</p>
+                </div>
+                <div class="space-y-4">
+                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest fr-txt">Formation</h2>
+                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest en-txt" style="display:none;">Education</h2>
+                    <div class="border-l-4 border-blue-500 pl-6">
+                        <p class="text-lg font-bold fr-txt">Licence en Éducation (Amazigh)</p>
+                        <p class="text-lg font-bold en-txt" style="display:none;">Bachelor in Education (Amazigh)</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase font-black mt-1">ESEF Oujda | 2024 — Présent</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="page-section">
+            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter fr-txt text-left">Parcours Professionnel</h2>
+            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter en-txt text-left" style="display:none;">Work Experience</h2>
+            <div class="space-y-20">
+                <div class="relative pl-10 border-l-4 border-blue-600 text-left">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-blue-600 ring-4 ring-blue-50 dark:ring-blue-900/20"></div>
+                    <div class="flex flex-col md:flex-row justify-between mb-6">
+                        <h3 class="text-2xl font-bold">Enseignant Vacataire | MSO</h3>
+                        <span class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-2 md:mt-0 italic">2025 — Présent</span>
+                    </div>
+                    <ul class="list-disc ml-5 text-md text-gray-600 dark:text-gray-300 space-y-3 fr-txt">
+                        <li>Coordination du Festival des Sciences et workshops IA.</li>
+                        <li>Formation Wix Studio pour l'initiation au Web Design.</li>
+                    </ul>
+                    <ul class="list-disc ml-5 text-md text-gray-600 dark:text-gray-300 space-y-3 en-txt" style="display:none;">
+                        <li>Science Festival coordination and AI workshops.</li>
+                        <li>Wix Studio training for Web Design initiation.</li>
+                    </ul>
+                </div>
+                <div class="relative pl-10 border-l-4 border-gray-200 dark:border-gray-800 text-left">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-700 ring-4 ring-gray-50 dark:ring-gray-900/20"></div>
+                    <div class="flex flex-col md:flex-row justify-between mb-6">
+                        <h3 class="text-2xl font-bold">Assistant Pédagogique | École Benyouness</h3>
+                        <span class="text-xs font-black text-gray-400 uppercase tracking-widest mt-2 md:mt-0 italic">2024 — Présent</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 fr-txt leading-relaxed">Soutien linguistique spécialisé en Amazigh (Tifinagh) et Arabe. Gestion de classe et accompagnement des élèves.</p>
+                    <p class="text-gray-600 dark:text-gray-300 en-txt leading-relaxed" style="display:none;">Language support in Amazigh (Tifinagh) and Arabic. Classroom management and student mentorship.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter fr-txt text-left">Contact</h2>
+            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter en-txt text-left" style="display:none;">Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="bg-white dark:bg-gray-900 p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-800">
+                    <p class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em] mb-8">Infos Directes</p>
+                    <div class="space-y-6 font-bold">
+                        <p class="flex items-center gap-4"><span>📞</span> (+212) 768 050 159</p>
+                        <p class="flex items-center gap-4"><span>✉️</span> abdooubella55@gmail.com</p>
+                        <p class="flex items-center gap-4"><span>📍</span> Casablanca / Oujda, Maroc</p>
+                        <p class="flex items-center gap-4">
+                            <span>🔗</span> 
+                            <a href="https://linkedin.com/in/abderrahmane-oubella" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-800 transition-colors">
+                                <span class="fr-txt">Mon profil LinkedIn</span>
+                                <span class="en-txt" style="display:none;">My LinkedIn Profile</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-blue-600 p-12 rounded-[2.5rem] shadow-2xl text-white flex flex-col justify-between">
+                    <h3 class="text-3xl font-black mb-12 fr-txt">Collaborons ensemble.</h3>
+                    <h3 class="text-3xl font-black mb-12 en-txt" style="display:none;">Let's work together.</h3>
+                    <a href="mailto:abdooubella55@gmail.com" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-black text-xs uppercase block text-center shadow-lg transition-transform hover:scale-105">Email Me</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-16 border-t border-gray-100 dark:border-gray-800 text-[15px] text-gray-400 uppercase tracking-widest">
+        | ⵓⴱⵍⵍⴰ ⵄⴱⴷⵔⵔⴰⵃⵎⴰⵏ © 2026 | 
+    </footer>
+
+</body>
+</html>
