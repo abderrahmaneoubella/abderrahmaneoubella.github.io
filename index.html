@@ -12,7 +12,7 @@
     <script>
         tailwind.config = { darkMode: 'class' }
 
-        function showPage(id, btnElement) {
+       function showPage(id, btnElement) {
             const sections = document.getElementsByClassName('page-section');
             for (let i = 0; i < sections.length; i++) {
                 sections[i].style.display = 'none';
@@ -27,10 +27,10 @@
                 buttons[i].classList.remove('active', 'text-blue-600', 'dark:text-blue-400');
                 buttons[i].classList.add('text-gray-400');
             }
+            btnElement.classList.remove('text-gray-400'); 
             btnElement.classList.add('active', 'text-blue-600', 'dark:text-blue-400');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         let isFr = true;
         function swapLang() {
             isFr = !isFr;
@@ -73,8 +73,8 @@
             </div>
             
             <div class="flex items-center gap-6">
-                <div class="hidden md:flex gap-6">
-                    <button onclick="showPage('accueil', this)" class="nav-btn active text-blue-600 dark:text-blue-400">
+             <div class="flex gap-3 md:gap-6">
+    <button onclick="showPage('accueil', this)" class="nav-btn active text-blue-600 dark:text-blue-400">
                         <span class="fr-txt">Accueil</span><span class="en-txt" style="display:none;">Home</span>
                     </button>
                     <button onclick="showPage('experience', this)" class="nav-btn text-gray-400">
