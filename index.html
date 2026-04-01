@@ -1,224 +1,590 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Abderrahmane Oubella</title>
-    <meta name="google-site-verification" content="cznlLYbm9gbnFwda1api5K4Tyq-YAFNj2ih7fg5CgHI" />
-    <meta name="description" content="Portfolio de Abderrahmane Oubella, étudiant en Éducation Primaire et Vice-Président du Robotics Club. Spécialiste Amazigh, Web Design et Innovation Pédagogique.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = { darkMode: 'class' }
-
-       function showPage(id, btnElement) {
-            const sections = document.getElementsByClassName('page-section');
-            for (let i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-                sections[i].classList.remove('active');
-            }
-            const target = document.getElementById(id);
-            target.style.display = 'block';
-            target.classList.add('active');
-
-            const buttons = document.getElementsByClassName('nav-btn');
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove('active', 'text-blue-600', 'dark:text-blue-400');
-                buttons[i].classList.add('text-gray-400');
-            }
-            btnElement.classList.remove('text-gray-400'); 
-            btnElement.classList.add('active', 'text-blue-600', 'dark:text-blue-400');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        let isFr = true;
-        function swapLang() {
-            isFr = !isFr;
-            const frTxt = document.querySelectorAll('.fr-txt');
-            const enTxt = document.querySelectorAll('.en-txt');
-            frTxt.forEach(el => el.style.display = isFr ? 'inline' : 'none');
-            enTxt.forEach(el => el.style.display = isFr ? 'none' : 'inline');
-            document.getElementById('langBtn').innerText = isFr ? "EN" : "FR";
-        }
-
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            document.getElementById('themeBtn').innerHTML = isDark ? "☀️" : "🌙";
-        }
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-    </script>
-
+    <title>Abderrahmane Oubella</title>
+    <meta name="description" content="Portfolio de Abderrahmane Oubella — Éducation Primaire & Innovation Technologique">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; transition: 0.3s; }
-        .nav-btn { cursor: pointer; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; background: none; border: none; }
-        .page-section { display: none; opacity: 0; }
-        .page-section.active { display: block; opacity: 1; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .skill-tag { border: 1px solid #e5e7eb; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+        :root {
+            --accent: #3dd68c;
+            --accent-hover: #52e89e;
+        }
+        [data-theme="dark"] {
+            --bg: #0a0a08; --surface: #111110; --surface2: #1a1a17;
+            --text: #f0ece0; --muted: #6b6b60; --border: #2a2a25;
+            --photo-filter: grayscale(20%) contrast(1.1);
+        }
+        [data-theme="light"] {
+            --bg: #f5f4ef; --surface: #ffffff; --surface2: #ebebea;
+            --text: #0f0f0d; --muted: #7a7a6e; --border: #deded8;
+            --photo-filter: grayscale(10%) contrast(1.05);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg); color: var(--text);
+            font-family: 'DM Sans', sans-serif; font-weight: 300;
+            overflow-x: hidden; cursor: none;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* CURSOR */
+        .cursor {
+            position: fixed; width: 10px; height: 10px;
+            background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: width .3s, height .3s;
+        }
+        .cursor-ring {
+            position: fixed; width: 34px; height: 34px;
+            border: 1px solid var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%,-50%); opacity: 0.4;
+            transition: width .3s, height .3s;
+        }
+        .cursor.hover { width: 18px; height: 18px; }
+        .cursor-ring.hover { width: 56px; height: 56px; opacity: 0.15; }
+
+        /* GRAIN */
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+            opacity: 0.025; pointer-events: none; z-index: 1000;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+            padding: 26px 48px; display: flex; justify-content: space-between; align-items: center;
+        }
+        nav::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, var(--bg) 55%, transparent);
+            z-index: -1; transition: background 0.4s;
+        }
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+            letter-spacing: 0.1em; color: var(--text);
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .nav-logo img { width: 28px; height: 28px; object-fit: contain; opacity: 0.7; }
+        [data-theme="dark"] .nav-logo img { filter: invert(1); }
+        .nav-logo b { color: var(--accent); font-weight: 400; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-link {
+            font-size: 9px; font-weight: 500; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--muted);
+            text-decoration: none; background: none; border: none; cursor: none;
+            transition: color 0.3s; position: relative; padding-bottom: 3px;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1px; background: var(--accent); transition: width 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--text); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-controls { display: flex; gap: 8px; align-items: center; }
+        .ctrl-btn {
+            background: var(--surface); border: 1px solid var(--border);
+            color: var(--text); font-family: 'DM Sans', sans-serif;
+            font-size: 9px; font-weight: 500; letter-spacing: 0.15em;
+            padding: 7px 13px; border-radius: 100px; cursor: none;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* THEME TOGGLE */
+        .theme-toggle {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 100px; padding: 5px 10px; cursor: none;
+            transition: border-color 0.3s;
+        }
+        .theme-toggle:hover { border-color: var(--accent); }
+        .theme-toggle-track {
+            width: 28px; height: 16px; border-radius: 100px;
+            background: var(--border); position: relative;
+            transition: background 0.3s; flex-shrink: 0;
+        }
+        [data-theme="light"] .theme-toggle-track { background: var(--accent); }
+        .theme-toggle-thumb {
+            position: absolute; width: 10px; height: 10px;
+            border-radius: 50%; background: var(--text);
+            top: 3px; left: 3px; transition: transform 0.3s, background 0.3s;
+        }
+        [data-theme="light"] .theme-toggle-thumb { transform: translateX(12px); background: white; }
+        .theme-icon { font-size: 12px; line-height: 1; }
+
+        .mobile-menu-btn {
+            display: none; background: none; border: none;
+            cursor: none; flex-direction: column; gap: 5px; padding: 4px;
+        }
+        .mobile-menu-btn span { display: block; width: 22px; height: 1px; background: var(--text); transition: background 0.3s; }
+        .mobile-nav {
+            display: none; position: fixed; inset: 0; background: var(--bg);
+            z-index: 400; flex-direction: column; justify-content: center;
+            align-items: center; gap: 40px; transition: background 0.4s;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav .nav-link { font-size: 13px; }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 0 48px 64px; position: relative; overflow: hidden;
+        }
+        .hero-bg-text {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(100px,18vw,260px);
+            color: transparent; -webkit-text-stroke: 1px rgba(61,214,140,0.055);
+            white-space: nowrap; pointer-events: none; user-select: none;
+            letter-spacing: 0.05em; animation: bgFloat 9s ease-in-out infinite;
+        }
+        [data-theme="light"] .hero-bg-text { -webkit-text-stroke: 1px rgba(61,214,140,0.12); }
+        @keyframes bgFloat { 0%,100% { transform:translate(-50%,-50%) translateY(0); } 50% { transform:translate(-50%,-50%) translateY(-18px); } }
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+        .orb1 { width:480px;height:480px;background:radial-gradient(circle,rgba(61,214,140,.1),transparent 70%);top:-80px;right:-80px;animation:orbFloat 11s ease-in-out infinite; }
+        .orb2 { width:360px;height:360px;background:radial-gradient(circle,rgba(61,214,140,.07),transparent 70%);bottom:80px;left:-40px;animation:orbFloat 14s ease-in-out infinite reverse; }
+        @keyframes orbFloat { 0%,100% { transform:translateY(0) scale(1); } 50% { transform:translateY(-28px) scale(1.04); } }
+
+        .hero-eyebrow {
+            font-size: 9px; font-weight: 500; letter-spacing: 0.32em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+            opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+        }
+        .hero-name {
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(70px,11vw,165px);
+            line-height: 0.88; letter-spacing: 0.02em; color: var(--text);
+            opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+        }
+        .hero-name .line2 { color: var(--accent); display: block; }
+        .hero-bottom {
+            margin-top: 44px; display: flex; justify-content: space-between;
+            align-items: flex-end; opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+        }
+        .hero-desc { max-width: 340px; font-size: 14px; line-height: 1.85; color: var(--muted); }
+        .hero-tags { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+        .hero-tag {
+            font-size: 9px; font-weight: 500; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--muted); border: 1px solid var(--border);
+            padding: 5px 13px; border-radius: 100px; transition: border-color 0.3s, color 0.3s;
+        }
+        .hero-tag:hover { border-color: var(--accent); color: var(--accent); }
+        .hero-photo {
+            position: absolute; right: 90px; bottom: 72px; width: 210px; height: 270px;
+            overflow: hidden; border-radius: 4px; opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+        }
+        .hero-photo img { width:100%;height:100%;object-fit:cover;filter:var(--photo-filter);transition:filter 0.4s; }
+        .hero-photo::before { content:'';position:absolute;inset:0;border:1px solid rgba(61,214,140,.2);border-radius:4px;z-index:1; }
+        .hero-photo-label { position:absolute;bottom:-1px;left:-1px;background:var(--accent);color:#0a0a08;font-size:7px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:5px 10px;z-index:2; }
+
+        .scroll-indicator {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            opacity: 0; animation: fadeUp 0.8s 1.3s forwards;
+        }
+        .scroll-indicator span { font-size: 7px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); }
+        .scroll-line { width:1px;height:44px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%,100% { opacity:1; } 50% { opacity:0.25; } }
+        @keyframes fadeUp { from { opacity:0;transform:translateY(28px); } to { opacity:1;transform:translateY(0); } }
+
+        /* SECTIONS */
+        section { padding: 110px 48px; border-top: 1px solid var(--border); position: relative; }
+        .section-label {
+            font-size: 8px; font-weight: 500; letter-spacing: 0.38em;
+            text-transform: uppercase; color: var(--accent);
+            margin-bottom: 56px; display: flex; align-items: center; gap: 14px;
+        }
+        .section-label::after { content:'';flex:1;height:1px;background:var(--border); }
+
+        /* ABOUT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .about-quote { font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(24px,3.2vw,40px);line-height:1.35;color:var(--text); }
+        .about-quote em { color: var(--accent); font-style: normal; }
+        .about-right { display: flex; flex-direction: column; gap: 24px; }
+        .about-text { font-size: 14px; line-height: 1.9; color: var(--muted); }
+        .edu-card {
+            padding: 24px; border: 1px solid var(--border); border-radius: 4px;
+            background: var(--surface); position: relative; overflow: hidden; transition: border-color 0.3s;
+        }
+        .edu-card:hover { border-color: var(--accent); }
+        .edu-card::before { content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent); }
+        .edu-card h4 { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.05em;color:var(--text);margin-bottom:4px; }
+        .edu-card p { font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted); }
+        .edu-card .edu-year { position:absolute;top:24px;right:24px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;color:var(--accent); }
+
+        /* SKILLS */
+        .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+        .skill-card {
+            padding: 28px 22px; border: 1px solid var(--border); border-radius: 4px;
+            background: var(--surface); transition: border-color 0.3s, transform 0.3s; cursor: none;
+        }
+        .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .sk-icon { font-size: 26px; margin-bottom: 14px; }
+        .skill-card h4 { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.05em;color:var(--text);margin-bottom:7px; }
+        .skill-card p { font-size:11px;line-height:1.7;color:var(--muted); }
+
+        /* EXPERIENCE */
+        .exp-item {
+            padding: 36px 0; border-bottom: 1px solid var(--border);
+            display: grid; grid-template-columns: 130px 1fr auto; gap: 40px; align-items: start;
+            transition: padding-left 0.3s, border-color 0.3s; cursor: none;
+        }
+        .exp-item:hover { padding-left: 10px; border-bottom-color: var(--accent); }
+        .exp-item:hover .exp-title { color: var(--accent); }
+        .exp-year { font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.12em;color:var(--muted);padding-top:4px; }
+        .exp-title { font-family:'DM Serif Display',serif;font-size:24px;color:var(--text);margin-bottom:5px;transition:color 0.3s; }
+        .exp-org { font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px; }
+        .exp-desc { font-size:12px;line-height:1.85;color:var(--muted);padding-left:16px; }
+        .exp-desc li { margin-bottom:5px; }
+        .exp-tags { display:flex;flex-direction:column;align-items:flex-end;gap:5px;padding-top:4px; }
+        .exp-tag { font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:3px 9px;border-radius:100px; }
+
+        /* CERTS */
+        .cert-card {
+            display: flex; gap: 22px; padding: 26px; border: 1px solid var(--border);
+            background: var(--surface); border-radius: 4px;
+            transition: border-color 0.3s, transform 0.3s; cursor: none;
+        }
+        .cert-card:hover { border-color: var(--accent); transform: translateX(6px); }
+        .cert-icon { font-size: 30px; flex-shrink: 0; }
+        .cert-org { font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:5px; }
+        .cert-card h4 { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.05em;color:var(--text);margin-bottom:6px; }
+        .cert-card p { font-size:11px;line-height:1.7;color:var(--muted); }
+
+        /* LANGUAGES */
+        .lang-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+        .lang-card {
+            padding: 24px 18px; border: 1px solid var(--border);
+            background: var(--surface); border-radius: 4px; text-align: center; transition: border-color 0.3s;
+        }
+        .lang-card:hover { border-color: var(--accent); }
+        .lang-name { font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--text);margin-bottom:3px; }
+        .lang-level { font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px; }
+        .lang-bar { height:2px;background:var(--border);border-radius:100px;overflow:hidden; }
+        .lang-fill { height:100%;background:var(--accent);border-radius:100px; }
+
+        /* CONTACT */
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .contact-left h2 { font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7.5vw,96px);line-height:0.9;letter-spacing:0.02em;margin-bottom:24px; }
+        .contact-left h2 span { display:block;color:var(--accent); }
+        .contact-cta {
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
+            background: var(--accent); color: #0a0a08; text-decoration: none;
+            font-weight: 500; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 16px 28px; border-radius: 4px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s; cursor: none;
+        }
+        .contact-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 16px 36px rgba(61,214,140,.2); }
+        .arrow { transition: transform 0.3s; }
+        .contact-cta:hover .arrow { transform: translateX(4px); }
+        .contact-right { display: flex; flex-direction: column; gap: 10px; }
+        .contact-link {
+            display: flex; align-items: center; gap: 14px; text-decoration: none;
+            color: var(--muted); font-size: 12px; padding: 16px 20px;
+            border: 1px solid var(--border); border-radius: 4px; background: var(--surface);
+            transition: all 0.3s; cursor: none;
+        }
+        .contact-link:hover { color: var(--text); border-color: var(--accent); background: var(--surface2); transform: translateX(5px); }
+        .link-icon { width:32px;height:32px;background:var(--surface2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0; }
+        .link-label { font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:2px; }
+
+        footer {
+            padding: 44px 48px; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-tif { font-size: 18px; letter-spacing: 0.2em; color: var(--muted); }
+        .footer-year { font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:var(--muted); }
+
+        /* REVEAL */
+        .reveal { opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease; }
+        .reveal.visible { opacity:1;transform:translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width:900px) {
+            nav { padding:18px 22px; }
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:flex; }
+            #hero { padding:0 22px 80px; }
+            .hero-photo { display:none; }
+            .hero-bottom { flex-direction:column;gap:28px;align-items:flex-start; }
+            section { padding:70px 22px; }
+            .about-grid { grid-template-columns:1fr;gap:36px; }
+            .skills-grid { grid-template-columns:repeat(2,1fr); }
+            .exp-item { grid-template-columns:1fr;gap:10px; }
+            .exp-tags { flex-direction:row;flex-wrap:wrap; }
+            .lang-grid { grid-template-columns:repeat(2,1fr); }
+            .contact-wrap { grid-template-columns:1fr;gap:40px; }
+            footer { flex-direction:column;gap:14px;text-align:center;padding:36px 22px; }
+        }
     </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-[#0b0f1a] dark:text-gray-100">
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-  <nav class="fixed top-0 w-full bg-white/90 dark:bg-[#0b0f1a]/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800">
-        <div class="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center relative">
-            
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 md:gap-3">
-                    <img src="abdooologo.png" alt="Logo" class="w-8 h-8 md:w-10 md:h-10 object-contain">
-                    <div class="font-black tracking-tighter text-sm md:text-xl uppercase italic">
-                        <span class="hidden sm:inline">Abderrahmane</span><span class="sm:hidden">A.</span> <span class="text-blue-600 dark:text-blue-400">Oubella</span>
-                    </div>
-                </div>
-                <button onclick="toggleDarkMode()" id="themeBtn" class="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg text-lg shadow-inner ml-2 md:ml-4">🌙</button>
+    <nav>
+        <a href="#hero" class="nav-logo" onclick="ns(event,'#hero')">
+            <img src="abdooologo.png" alt="Logo">
+            <b>Oubella</b>
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <button onclick="ns(event,'#hero')" class="nav-link active"><span class="fr">Accueil</span><span class="en" style="display:none">Home</span></button>
+                <button onclick="ns(event,'#about')" class="nav-link"><span class="fr">Profil</span><span class="en" style="display:none">About</span></button>
+                <button onclick="ns(event,'#skills')" class="nav-link"><span class="fr">Compétences</span><span class="en" style="display:none">Skills</span></button>
+                <button onclick="ns(event,'#experience')" class="nav-link"><span class="fr">Parcours</span><span class="en" style="display:none">Experience</span></button>
+                <button onclick="ns(event,'#contact')" class="nav-link">Contact</button>
             </div>
-            
-            <div class="flex items-center gap-4 md:gap-6">
-                <div class="hidden md:flex gap-6">
-                    <button onclick="showPage('accueil', this)" class="nav-btn active text-blue-600 dark:text-blue-400">
-                        <span class="fr-txt">Accueil</span><span class="en-txt" style="display:none;">Home</span>
-                    </button>
-                    <button onclick="showPage('experience', this)" class="nav-btn text-gray-400">
-                        <span class="fr-txt">Expériences</span><span class="en-txt" style="display:none;">Experience</span>
-                    </button>
-                    <button onclick="showPage('contact', this)" class="nav-btn text-gray-400">
-                        <span class="fr-txt">Contact</span><span class="en-txt" style="display:none;">Contact</span>
-                    </button>
-                </div>
-                
-                <button onclick="swapLang()" id="langBtn" class="font-black text-[10px] border-2 border-blue-600 px-3 py-1 rounded-md text-blue-600 dark:border-blue-400 dark:text-blue-400">EN</button>
-                
-                <button onclick="toggleMenu()" class="md:hidden text-2xl text-gray-900 dark:text-gray-100 focus:outline-none ml-2">
-                    ☰
+            <div class="nav-controls">
+                <button onclick="swapLang()" id="langBtn" class="ctrl-btn">EN</button>
+                <button onclick="toggleTheme()" class="theme-toggle" id="themeBtn" title="Toggle theme">
+                    <span class="theme-icon" id="themeIcon">☀️</span>
+                    <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
                 </button>
+                <button onclick="ns(event,'#contact')" class="ctrl-btn fr">Travaillons</button>
+                <button onclick="ns(event,'#contact')" class="ctrl-btn en" style="display:none">Let's Talk</button>
             </div>
-        </div>
-
-        <div id="mobileMenu" class="hidden absolute top-full left-0 w-full bg-white dark:bg-[#0b0f1a] border-b border-gray-100 dark:border-gray-800 flex flex-col px-6 py-6 gap-6 shadow-2xl">
-            <button onclick="showPage('accueil', this); toggleMenu()" class="nav-btn active text-left text-lg text-blue-600 dark:text-blue-400 border-b border-gray-100 dark:border-gray-800 pb-2">
-                <span class="fr-txt">Accueil</span><span class="en-txt" style="display:none;">Home</span>
-            </button>
-            <button onclick="showPage('experience', this); toggleMenu()" class="nav-btn text-left text-lg text-gray-400 border-b border-gray-100 dark:border-gray-800 pb-2">
-                <span class="fr-txt">Expériences</span><span class="en-txt" style="display:none;">Experience</span>
-            </button>
-            <button onclick="showPage('contact', this); toggleMenu()" class="nav-btn text-left text-lg text-gray-400 pb-2">
-                <span class="fr-txt">Contact</span><span class="en-txt" style="display:none;">Contact</span>
-            </button>
+            <button class="mobile-menu-btn" onclick="toggleMob()"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto pt-44 pb-20 px-6">
+    <div class="mobile-nav" id="mobileNav">
+        <button onclick="ns(event,'#hero');closeMob()" class="nav-link"><span class="fr">Accueil</span><span class="en" style="display:none">Home</span></button>
+        <button onclick="ns(event,'#about');closeMob()" class="nav-link"><span class="fr">Profil</span><span class="en" style="display:none">About</span></button>
+        <button onclick="ns(event,'#skills');closeMob()" class="nav-link"><span class="fr">Compétences</span><span class="en" style="display:none">Skills</span></button>
+        <button onclick="ns(event,'#experience');closeMob()" class="nav-link"><span class="fr">Parcours</span><span class="en" style="display:none">Experience</span></button>
+        <button onclick="ns(event,'#contact');closeMob()" class="nav-link">Contact</button>
+    </div>
 
-        <section id="accueil" class="page-section active" style="display:block;">
-            <div class="flex flex-col md:flex-row items-center gap-12 mb-24">
-                <div class="w-48 h-48 rounded-[2rem] border-4 border-blue-600 overflow-hidden shadow-2xl bg-white dark:bg-gray-800 flex-shrink-0">
-                    <img src="profile.jpeg" alt="Photo" class="w-full h-full object-cover">
-                </div>
-                <div class="text-center md:text-left">
-                    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 uppercase leading-tight">Abderrahmane <br> <span class="text-blue-600 dark:text-blue-400">Oubella</span></h1>
-                    <p class="text-xl font-medium text-gray-500 dark:text-gray-400 italic fr-txt uppercase tracking-tighter">Éducation Primaire & Innovation Technologique</p>
-                    <p class="text-xl font-medium text-gray-500 dark:text-gray-400 italic en-txt uppercase tracking-tighter" style="display:none;">Primary Education & Tech Innovation</p>
-                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-3">
-                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">VP Robotics Club</span>
-                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">Spécialiste Amazigh</span>
-                        <span class="skill-tag bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">STEAM Certified</span>
-                    </div>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg-text">OUBELLA</div>
+        <div class="hero-orb orb1"></div>
+        <div class="hero-orb orb2"></div>
+        <div class="hero-photo">
+            <img src="profile.jpeg" alt="Abderrahmane Oubella">
+            <div class="hero-photo-label">Oujda, MA · 2006</div>
+        </div>
+        <div>
+            <p class="hero-eyebrow fr">Étudiant · Éducateur · Innovateur</p>
+            <p class="hero-eyebrow en" style="display:none">Student · Educator · Innovator</p>
+            <h1 class="hero-name">Abderrahmane<span class="line2">Oubella</span></h1>
+            <div class="hero-bottom">
+                <p class="hero-desc fr">VP du Robotics Club à l'ESEF Oujda. Je fusionne pédagogie, IA et culture Amazigh pour réinventer l'éducation de demain.</p>
+                <p class="hero-desc en" style="display:none">VP of ESEFO Robotics Club. Merging pedagogy, AI and Amazigh culture to reinvent tomorrow's education.</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">VP Robotics Club</span>
+                    <span class="hero-tag fr">Spécialiste Amazigh</span>
+                    <span class="hero-tag en" style="display:none">Amazigh Specialist</span>
+                    <span class="hero-tag">STEAM Certified</span>
+                    <span class="hero-tag fr">Concepteur Web</span>
+                    <span class="hero-tag en" style="display:none">Web Designer</span>
                 </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-gray-100 dark:border-gray-800 pt-16">
-               <div class="space-y-4">
-    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest fr-txt">À PROPOS DE MOI</h2>
-    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest en-txt" style="display:none;">ABOUT ME</h2>
-    
-    <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed fr-txt italic border-l-2 border-blue-600 pl-4">
-        "Je ne crois pas aux limites ; je découvre simplement ce que je ne peux pas encore faire." <br><br>
-        Étudiant à l'ESEF Oujda et Vice-Président du Robotics Club, j'évolue à l'intersection de la technologie et de l'éducation. Ma mission est de digitaliser l'enseignement de l'Amazigh via l'IA et le STEAM.
-    </p>
-    
-    <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed en-txt italic border-l-2 border-blue-600 pl-4" style="display:none;">
-        "I don’t believe in limits; I’m just exploring what I can’t do." <br><br>
-        As a student at ESEF Oujda and VP of the ESEFO Robotics Club, I live at the intersection of Tech and Education, digitalizing Amazigh culture through AI and STEAM.
-    </p>
-</div>
-                <div class="space-y-4">
-                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest fr-txt">Formation</h2>
-                    <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest en-txt" style="display:none;">Education</h2>
-                    <div class="border-l-4 border-blue-500 pl-6">
-                        <p class="text-lg font-bold fr-txt">Licence en Éducation (Amazigh)</p>
-                        <p class="text-lg font-bold en-txt" style="display:none;">Bachelor in Education (Amazigh)</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase font-black mt-1">ESEF Oujda | 2024 — Présent</p>
-                    </div>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll</span></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <p class="section-label fr">01 — Profil</p>
+        <p class="section-label en" style="display:none">01 — About</p>
+        <div class="about-grid">
+            <div>
+                <p class="about-quote fr reveal">"Je ne crois pas aux <em>limites</em> — je découvre simplement ce que je ne peux pas <em>encore</em> faire."</p>
+                <p class="about-quote en reveal" style="display:none">"I don't believe in <em>limits</em> — I'm just discovering what I <em>can't do yet</em>."</p>
+            </div>
+            <div class="about-right">
+                <p class="about-text fr reveal">Vice-Président du club de robotique universitaire à l'ESEF Oujda, j'évolue à l'intersection de la technologie et de l'éducation. Spécialisé en langue Amazigh, j'intègre des approches STEAM innovantes pour digitaliser et valoriser le patrimoine culturel berbère.</p>
+                <p class="about-text en reveal" style="display:none">VP of the university robotics club at ESEF Oujda, I live at the intersection of technology and education. Specialized in the Amazigh language, I integrate innovative STEAM approaches to digitalize and promote Berber cultural heritage.</p>
+                <div class="edu-card reveal">
+                    <span class="edu-year">2024—</span>
+                    <h4 class="fr">Licence en Éducation (Amazigh)</h4>
+                    <h4 class="en" style="display:none">Bachelor in Education (Amazigh)</h4>
+                    <p>ESEF Oujda · EQF Niveau 6</p>
+                </div>
+                <div class="edu-card reveal">
+                    <span class="edu-year">2021—2024</span>
+                    <h4 class="fr">Baccalauréat Sciences Physiques</h4>
+                    <h4 class="en" style="display:none">Baccalaureate in Physical Sciences</h4>
+                    <p class="fr">Lycée El Jadida, Tata · Option Française · EQF Niveau 4</p>
+                    <p class="en" style="display:none">El Jadida High School, Tata · French Option · EQF Level 4</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="experience" class="page-section">
-            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter fr-txt text-left">Parcours Professionnel</h2>
-            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter en-txt text-left" style="display:none;">Work Experience</h2>
-            <div class="space-y-20">
-                <div class="relative pl-10 border-l-4 border-blue-600 text-left">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-blue-600 ring-4 ring-blue-50 dark:ring-blue-900/20"></div>
-                    <div class="flex flex-col md:flex-row justify-between mb-6">
-                        <h3 class="text-2xl font-bold">Enseignant Vacataire | MSO</h3>
-                        <span class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-2 md:mt-0 italic">2025 — Présent</span>
-                    </div>
-                    <ul class="list-disc ml-5 text-md text-gray-600 dark:text-gray-300 space-y-3 fr-txt">
-                        <li>Coordination du Festival des Sciences et workshops IA.</li>
-                        <li>Formation Wix Studio pour l'initiation au Web Design.</li>
-                    </ul>
-                    <ul class="list-disc ml-5 text-md text-gray-600 dark:text-gray-300 space-y-3 en-txt" style="display:none;">
-                        <li>Science Festival coordination and AI workshops.</li>
-                        <li>Wix Studio training for Web Design initiation.</li>
-                    </ul>
+    <!-- SKILLS -->
+    <section id="skills">
+        <p class="section-label fr">02 — Compétences</p>
+        <p class="section-label en" style="display:none">02 — Skills</p>
+        <div class="skills-grid">
+            <div class="skill-card reveal"><div class="sk-icon">🤖</div><h4 class="fr">IA & Innovation</h4><h4 class="en" style="display:none">AI & Innovation</h4><p class="fr">Maîtrise des outils d'IA générative. Animation d'ateliers IA pour jeunes publics.</p><p class="en" style="display:none">Proficiency in generative AI tools. AI literacy workshops for youth.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">🌐</div><h4>Web Design</h4><p class="fr">Wix Studio, Affinity Designer. Formation et création de sites web professionnels.</p><p class="en" style="display:none">Wix Studio, Affinity Designer. Training and professional website creation.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">⵿</div><h4 class="fr">Langue Amazigh</h4><h4 class="en" style="display:none">Amazigh Language</h4><p class="fr">Expertise avancée en Tifinagh, grammaire générative et didactique Amazigh.</p><p class="en" style="display:none">Advanced expertise in Tifinagh, generative grammar and Amazigh didactics.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">🎓</div><h4 class="fr">Pédagogie STEAM</h4><h4 class="en" style="display:none">STEAM Pedagogy</h4><p class="fr">Cognitivisme, Constructivisme, Gestaltisme. Conception de matériaux éducatifs innovants.</p><p class="en" style="display:none">Cognitivism, Constructivism, Gestaltism. Innovative educational material design.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">🎤</div><h4 class="fr">Prise de Parole</h4><h4 class="en" style="display:none">Public Speaking</h4><p class="fr">Animation d'événements scientifiques, présentations publiques et relations presse.</p><p class="en" style="display:none">Scientific event facilitation, public presentations and press relations.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">♟️</div><h4 class="fr">Leadership</h4><h4 class="en" style="display:none">Leadership</h4><p class="fr">Gestion d'équipe, coordination d'événements, mentorat associatif et jeunesse.</p><p class="en" style="display:none">Team management, event coordination, associative and youth mentorship.</p></div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <p class="section-label fr">03 — Parcours</p>
+        <p class="section-label en" style="display:none">03 — Experience</p>
+        <div>
+            <div class="exp-item reveal">
+                <div class="exp-year">Fév 2025 — Présent</div>
+                <div>
+                    <h3 class="exp-title fr">Enseignant Vacataire</h3>
+                    <h3 class="exp-title en" style="display:none">Vocational Teacher</h3>
+                    <p class="exp-org">La Maison des Sciences (MSO) · Oujda</p>
+                    <ul class="exp-desc fr"><li>12ème Festival des Sciences (2–4 Mai 2025) — logistique, ateliers, relations publiques.</li><li>Ateliers Wix Studio (Jan 2026) — Web Design pour collégiens.</li><li>Alphabétisation IA (2025) — démonstrations d'IA générative pour jeunes.</li><li>Gestion du Robotics Club et coordination des activités scientifiques.</li></ul>
+                    <ul class="exp-desc en" style="display:none"><li>12th Science Festival (May 2–4, 2025) — logistics, workshops, public relations.</li><li>Wix Studio Workshops (Jan 2026) — web design for middle school students.</li><li>AI Literacy (2025) — generative AI demos and workshops for youth.</li><li>Robotics club management and scientific activity coordination.</li></ul>
                 </div>
-                <div class="relative pl-10 border-l-4 border-gray-200 dark:border-gray-800 text-left">
-                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-700 ring-4 ring-gray-50 dark:ring-gray-900/20"></div>
-                    <div class="flex flex-col md:flex-row justify-between mb-6">
-                        <h3 class="text-2xl font-bold">Assistant Pédagogique | École Benyouness</h3>
-                        <span class="text-xs font-black text-gray-400 uppercase tracking-widest mt-2 md:mt-0 italic">2024 — Présent</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 fr-txt leading-relaxed">Soutien linguistique spécialisé en Amazigh (Tifinagh) et Arabe. Gestion de classe et accompagnement des élèves.</p>
-                    <p class="text-gray-600 dark:text-gray-300 en-txt leading-relaxed" style="display:none;">Language support in Amazigh (Tifinagh) and Arabic. Classroom management and student mentorship.</p>
+                <div class="exp-tags"><span class="exp-tag">IA</span><span class="exp-tag">Web</span><span class="exp-tag">STEAM</span></div>
+            </div>
+            <div class="exp-item reveal">
+                <div class="exp-year">Déc 2024 — Présent</div>
+                <div>
+                    <h3 class="exp-title fr">Assistant Pédagogique</h3>
+                    <h3 class="exp-title en" style="display:none">Teaching Assistant</h3>
+                    <p class="exp-org fr">École Benyouness El Ouartassi · Oujda</p>
+                    <p class="exp-org en" style="display:none">Benyouness El Ouartassi School · Oujda</p>
+                    <ul class="exp-desc fr"><li>Observation et analyse des méthodologies d'enseignement en cycle primaire.</li><li>Soutien linguistique spécialisé Amazigh (Tifinagh) et Arabe.</li><li>Conception de matériaux pédagogiques interactifs et sessions de soutien scolaire.</li></ul>
+                    <ul class="exp-desc en" style="display:none"><li>Observation and analysis of primary education teaching methodologies.</li><li>Specialized linguistic support in Amazigh (Tifinagh) and Arabic.</li><li>Design of interactive learning materials and academic support sessions.</li></ul>
+                </div>
+                <div class="exp-tags"><span class="exp-tag">Amazigh</span><span class="exp-tag">Tifinagh</span><span class="exp-tag">Arabe</span></div>
+            </div>
+            <div class="exp-item reveal">
+                <div class="exp-year">19–21 Déc 2025</div>
+                <div>
+                    <h3 class="exp-title fr">Mentor Bénévole</h3>
+                    <h3 class="exp-title en" style="display:none">Volunteer Mentor</h3>
+                    <p class="exp-org fr">Ambassadeurs du Bien · Saïdia</p>
+                    <p class="exp-org en" style="display:none">Ambassadors of Goodness Association · Saidia</p>
+                    <ul class="exp-desc fr"><li>Mentorat de jeunes sur les fondamentaux de la gestion associative et du leadership social.</li><li>Ateliers "Jeunesse : Clé du Futur et Service à la Société" — Région de l'Oriental.</li><li>Plaidoyer pour l'engagement civique et la responsabilité sociale.</li></ul>
+                    <ul class="exp-desc en" style="display:none"><li>Youth mentorship on association management and social leadership fundamentals.</li><li>"Youth: Key for Future and Serving Society" workshops — East Region.</li><li>Social advocacy for civic engagement and community development.</li></ul>
+                </div>
+                <div class="exp-tags"><span class="exp-tag fr">Bénévolat</span><span class="exp-tag en" style="display:none">Volunteer</span><span class="exp-tag">NGO</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certs">
+        <p class="section-label fr">04 — Certifications</p>
+        <p class="section-label en" style="display:none">04 — Certifications</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="cert-card reveal">
+                <div class="cert-icon">🏅</div>
+                <div>
+                    <p class="cert-org">Edraak — Queen Rania Foundation · Nov 2025</p>
+                    <h4 class="fr">STEAM : Intégrer l'Éducation à la Vie</h4>
+                    <h4 class="en" style="display:none">STEAM: Integrating Education with Life</h4>
+                    <p class="fr">Formation spécialisée sur la philosophie STEAM — intégration des Sciences, Technologie, Ingénierie, Arts et Mathématiques dans des expériences d'apprentissage signifiantes. Appliqué à l'enseignement de la langue Amazigh.</p>
+                    <p class="en" style="display:none">Specialized STEAM training — integrating Science, Technology, Engineering, Arts and Mathematics into meaningful learning experiences, with application to Amazigh language education.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="page-section">
-            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter fr-txt text-left">Contact</h2>
-            <h2 class="text-4xl font-black mb-16 border-b-4 border-blue-600 inline-block uppercase tracking-tighter en-txt text-left" style="display:none;">Contact</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                <div class="bg-white dark:bg-gray-900 p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-800">
-                    <p class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em] mb-8">Infos Directes</p>
-                    <div class="space-y-6 font-bold">
-                        <p class="flex items-center gap-4"><span>📞</span> (+212) 768 050 159</p>
-                        <p class="flex items-center gap-4"><span>✉️</span> abdooubella55@gmail.com</p>
-                        <p class="flex items-center gap-4"><span>📍</span> Casablanca / Oujda, Maroc</p>
-                        <p class="flex items-center gap-4">
-                            <span>🔗</span> 
-                            <a href="https://linkedin.com/in/abderrahmane-oubella" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-800 transition-colors">
-                                <span class="fr-txt">Mon profil LinkedIn</span>
-                                <span class="en-txt" style="display:none;">My LinkedIn Profile</span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-blue-600 p-12 rounded-[2.5rem] shadow-2xl text-white flex flex-col justify-between">
-                    <h3 class="text-3xl font-black mb-12 fr-txt">Collaborons ensemble.</h3>
-                    <h3 class="text-3xl font-black mb-12 en-txt" style="display:none;">Let's work together.</h3>
-                    <a href="mailto:abdooubella55@gmail.com" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-black text-xs uppercase block text-center shadow-lg transition-transform hover:scale-105">Email Me</a>
-                </div>
+    <!-- LANGUAGES -->
+    <section id="languages">
+        <p class="section-label fr">05 — Langues</p>
+        <p class="section-label en" style="display:none">05 — Languages</p>
+        <div class="lang-grid">
+            <div class="lang-card reveal"><div class="lang-name fr">Arabe</div><div class="lang-name en" style="display:none">Arabic</div><div class="lang-level fr">Maternelle</div><div class="lang-level en" style="display:none">Native</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+            <div class="lang-card reveal"><div class="lang-name">Amazigh</div><div class="lang-level fr">Maternelle</div><div class="lang-level en" style="display:none">Native</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+            <div class="lang-card reveal"><div class="lang-name fr">Français</div><div class="lang-name en" style="display:none">French</div><div class="lang-level">B2</div><div class="lang-bar"><div class="lang-fill" style="width:72%"></div></div></div>
+            <div class="lang-card reveal"><div class="lang-name fr">Anglais</div><div class="lang-name en" style="display:none">English</div><div class="lang-level">B2</div><div class="lang-bar"><div class="lang-fill" style="width:72%"></div></div></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <p class="section-label fr">06 — Contact</p>
+        <p class="section-label en" style="display:none">06 — Contact</p>
+        <div class="contact-wrap">
+            <div class="contact-left reveal">
+                <h2 class="fr">Travaillons <span>Ensemble.</span></h2>
+                <h2 class="en" style="display:none">Let's Work <span>Together.</span></h2>
+                <a href="mailto:abdooubella55@gmail.com" class="contact-cta"><span>Email Me</span><span class="arrow">→</span></a>
             </div>
-        </section>
+            <div class="contact-right">
+                <a href="mailto:abdooubella55@gmail.com" class="contact-link reveal"><div class="link-icon">✉️</div><div><div class="link-label">Email</div>abdooubella55@gmail.com</div></a>
+                <a href="tel:+212768050159" class="contact-link reveal"><div class="link-icon">📞</div><div><div class="link-label">Phone</div>(+212) 768 050 159</div></a>
+                <a href="https://linkedin.com/in/abderrahmane-oubella" target="_blank" class="contact-link reveal"><div class="link-icon">🔗</div><div><div class="link-label">LinkedIn</div><span class="fr">Mon profil LinkedIn</span><span class="en" style="display:none">LinkedIn Profile</span></div></a>
+                <div class="contact-link reveal" style="cursor:default"><div class="link-icon">📍</div><div><div class="link-label">Location</div>Casablanca / Oujda, Maroc</div></div>
+                <div class="contact-link reveal" style="cursor:default"><div class="link-icon">🚗</div><div><div class="link-label fr">Permis</div><div class="link-label en" style="display:none">Driving Licence</div><span class="fr">Permis B — Véhicule personnel</span><span class="en" style="display:none">Driving Licence B</span></div></div>
+            </div>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="text-center py-16 border-t border-gray-100 dark:border-gray-800 text-[15px] text-gray-400 uppercase tracking-widest">
-        | ⵓⴱⵍⵍⴰ ⵄⴱⴷⵔⵔⴰⵃⵎⴰⵏ © 2026 | 
+    <footer>
+        <span class="footer-tif">ⵓⴱⵍⵍⴰ ⵄⴱⴷⵔⵔⴰⵃⵎⴰⵏ</span>
+        <span class="footer-year">© 2026 — All rights reserved</span>
     </footer>
 
+    <script>
+        // CURSOR
+        const cur = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx=0,my=0,rx=0,ry=0;
+        document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+        (function animRing() { rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+        document.querySelectorAll('a,button,.exp-item,.skill-card,.cert-card,.lang-card,.hero-tag').forEach(el => {
+            el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
+            el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
+        });
+
+        // NAV SCROLL
+        function ns(e,id){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:'smooth'});}
+
+        // ACTIVE NAV
+        const secs = document.querySelectorAll('section[id]');
+        const navBtns = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let active = '';
+            secs.forEach(s => { if (window.scrollY >= s.offsetTop - 220) active = s.id; });
+            navBtns.forEach(b => {
+                const href = b.getAttribute('onclick') || '';
+                const match = ['hero','about','skills','experience','contact'].find(t => href.includes('#'+t));
+                b.classList.toggle('active', match === active);
+            });
+        });
+
+        // LANG
+        let isFr = true;
+        function swapLang() {
+            isFr = !isFr;
+            document.querySelectorAll('.fr').forEach(el => el.style.display = isFr ? '' : 'none');
+            document.querySelectorAll('.en').forEach(el => el.style.display = isFr ? 'none' : '');
+            document.getElementById('langBtn').textContent = isFr ? 'EN' : 'FR';
+        }
+
+        // THEME
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.dataset.theme === 'dark';
+            html.dataset.theme = isDark ? 'light' : 'dark';
+            document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+        }
+
+        // MOBILE
+        function toggleMob() { document.getElementById('mobileNav').classList.toggle('open'); }
+        function closeMob() { document.getElementById('mobileNav').classList.remove('open'); }
+
+        // REVEAL
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
 </body>
 </html>
