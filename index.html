@@ -776,45 +776,37 @@ YOUR PERSONALITY AS ABDOOO:
             const t = document.getElementById('abdooo-typing');
             if (t) t.remove();
         }
+async function abdoooSend() {
+    const input = document.getElementById('abdooo-input');
+    const text = input.value.trim();
+    if (!text) return;
 
-        async function abdoooSend() {
-            const input = document.getElementById('abdooo-input');
-            const text = input.value.trim();
-            if (!text) return;
-            input.value = '';
-            document.getElementById('abdooo-quick').style.display = 'none';
-            abdoooAddMsg('user', text);
-            abdoooTyping();
+    input.value = '';
+    document.getElementById('abdooo-quick').style.display = 'none';
+    abdoooAddMsg('user', text);
+    abdoooTyping();
 
-            try {
-                const messages = abdoooHistory.slice(0, -1).map(m => ({ role: m.role, content: m.content }));
-                messages.push({ role: 'user', content: text });
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                messages: abdoooHistory.filter(m => m.role !== 'system') 
+            })
+        });
 
-                const res = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 1000,
-                        system: ABDOOO_SYSTEM,
-                        messages: messages
-                    })
-                });
-
-                const data = await res.json();
-                abdoooRemoveTyping();
-                const reply = data.content?.[0]?.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
-                abdoooAddMsg('bot', reply);
-            } catch (err) {
-                abdoooRemoveTyping();
-                abdoooAddMsg('bot', "Oops, une erreur s'est produite. Essaie de contacter Abderrahmane directement à **abdooubella55@gmail.com** 📧");
-            }
-        }
-
-        function abdoooQuick(text) {
-            document.getElementById('abdooo-input').value = text;
-            abdoooSend();
-        }
+        const data = await res.json();
+        abdoooRemoveTyping();
+        
+        const reply = data.content?.[0]?.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
+        abdoooAddMsg('bot', reply);
+    } catch (err) {
+        abdoooRemoveTyping();
+        abdoooAddMsg('bot', "Oops, une erreur s'est produite. Essaie de contacter Abderrahmane directement à **abdooubella55@gmail.com** 📧");
+    }
+}
+       
+    
     </script>
 </body>
 </html>
