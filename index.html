@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -148,6 +148,7 @@
         @keyframes scrollPulse { 0%,100% { opacity:1; } 50% { opacity:0.25; } }
         @keyframes fadeUp { from { opacity:0;transform:translateY(28px); } to { opacity:1;transform:translateY(0); } }
 
+        /* SECTIONS */
         section { padding: 110px 48px; border-top: 1px solid var(--border); position: relative; }
         .section-label {
             font-size: 8px; font-weight: 500; letter-spacing: 0.38em;
@@ -156,6 +157,7 @@
         }
         .section-label::after { content:'';flex:1;height:1px;background:var(--border); }
 
+        /* ABOUT */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .about-quote { font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(24px,3.2vw,40px);line-height:1.35;color:var(--text); }
         .about-quote em { color: var(--accent); font-style: normal; }
@@ -171,6 +173,7 @@
         .edu-card p { font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted); }
         .edu-card .edu-year { position:absolute;top:24px;right:24px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;color:var(--accent); }
 
+        /* SKILLS */
         .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
         .skill-card {
             padding: 28px 22px; border: 1px solid var(--border); border-radius: 4px;
@@ -181,6 +184,7 @@
         .skill-card h4 { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.05em;color:var(--text);margin-bottom:7px; }
         .skill-card p { font-size:11px;line-height:1.7;color:var(--muted); }
 
+        /* EXPERIENCE */
         .exp-item {
             padding: 36px 0; border-bottom: 1px solid var(--border);
             display: grid; grid-template-columns: 130px 1fr auto; gap: 40px; align-items: start;
@@ -196,6 +200,7 @@
         .exp-tags { display:flex;flex-direction:column;align-items:flex-end;gap:5px;padding-top:4px; }
         .exp-tag { font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:3px 9px;border-radius:100px; }
 
+        /* CERTS */
         .cert-card {
             display: flex; gap: 22px; padding: 26px; border: 1px solid var(--border);
             background: var(--surface); border-radius: 4px;
@@ -207,6 +212,7 @@
         .cert-card h4 { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:0.05em;color:var(--text);margin-bottom:6px; }
         .cert-card p { font-size:11px;line-height:1.7;color:var(--muted); }
 
+        /* LANGUAGES */
         .lang-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
         .lang-card {
             padding: 24px 18px; border: 1px solid var(--border);
@@ -218,6 +224,7 @@
         .lang-bar { height:2px;background:var(--border);border-radius:100px;overflow:hidden; }
         .lang-fill { height:100%;background:var(--accent);border-radius:100px; }
 
+        /* CONTACT */
         .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .contact-left h2 { font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7.5vw,96px);line-height:0.9;letter-spacing:0.02em;margin-bottom:24px; }
         .contact-left h2 span { display:block;color:var(--accent); }
@@ -249,9 +256,11 @@
         .footer-tif { font-size: 18px; letter-spacing: 0.2em; color: var(--muted); }
         .footer-year { font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:var(--muted); }
 
+        /* REVEAL */
         .reveal { opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease; }
         .reveal.visible { opacity:1;transform:translateY(0); }
 
+        /* RESPONSIVE */
         @media (max-width:900px) {
             nav { padding:18px 22px; }
             .nav-links { display:none; }
@@ -301,6 +310,7 @@
         <button onclick="ns(event,'#contact');closeMob()" class="nav-link">Contact</button>
     </div>
 
+    <!-- HERO -->
     <section id="hero">
         <div class="hero-bg-text">OUBELLA</div>
         <div class="hero-orb orb1"></div>
@@ -329,6 +339,7 @@
         <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll</span></div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
         <p class="section-label fr">01 — Profil</p>
         <p class="section-label en" style="display:none">01 — About</p>
@@ -357,6 +368,7 @@
         </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
         <p class="section-label fr">02 — Compétences</p>
         <p class="section-label en" style="display:none">02 — Skills</p>
@@ -370,6 +382,7 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
         <p class="section-label fr">03 — Parcours</p>
         <p class="section-label en" style="display:none">03 — Experience</p>
@@ -412,6 +425,7 @@
         </div>
     </section>
 
+    <!-- CERTIFICATIONS -->
     <section id="certs">
         <p class="section-label fr">04 — Certifications</p>
         <p class="section-label en" style="display:none">04 — Certifications</p>
@@ -429,7 +443,7 @@
         </div>
     </section>
 
-
+    <!-- LANGUAGES -->
     <section id="languages">
         <p class="section-label fr">05 — Langues</p>
         <p class="section-label en" style="display:none">05 — Languages</p>
@@ -441,6 +455,7 @@
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
         <p class="section-label fr">06 — Contact</p>
         <p class="section-label en" style="display:none">06 — Contact</p>
@@ -455,6 +470,7 @@
                 <a href="tel:+212768050159" class="contact-link reveal"><div class="link-icon">📞</div><div><div class="link-label">Phone</div>(+212) 768 050 159</div></a>
                 <a href="https://linkedin.com/in/abderrahmane-oubella" target="_blank" class="contact-link reveal"><div class="link-icon">🔗</div><div><div class="link-label">LinkedIn</div><span class="fr">Mon profil LinkedIn</span><span class="en" style="display:none">LinkedIn Profile</span></div></a>
                 <div class="contact-link reveal" style="cursor:default"><div class="link-icon">📍</div><div><div class="link-label">Location</div>Casablanca / Oujda, Maroc</div></div>
+                <div class="contact-link reveal" style="cursor:default"><div class="link-icon">🚗</div><div><div class="link-label fr">Permis</div><div class="link-label en" style="display:none">Driving Licence</div><span class="fr">Permis B — Véhicule personnel</span><span class="en" style="display:none">Driving Licence B</span></div></div>
             </div>
         </div>
     </section>
@@ -465,8 +481,10 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // NAV SCROLL
         function ns(e,id){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:'smooth'});}
 
+        // ACTIVE NAV
         const secs = document.querySelectorAll('section[id]');
         const navBtns = document.querySelectorAll('.nav-link');
         window.addEventListener('scroll', () => {
@@ -479,6 +497,7 @@
             });
         });
 
+        // LANG
         let isFr = true;
         function swapLang() {
             isFr = !isFr;
@@ -487,17 +506,22 @@
             document.getElementById('langBtn').textContent = isFr ? 'EN' : 'FR';
         }
 
+        // MOBILE
         function toggleMob() { document.getElementById('mobileNav').classList.toggle('open'); }
         function closeMob() { document.getElementById('mobileNav').classList.remove('open'); }
 
+        // REVEAL
         const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 
- 
+    <!-- ═══════════════════════════════════════════
+         ABDOOO — AI ASSISTANT
+    ═══════════════════════════════════════════ -->
     <style>
+        /* WIDGET SHELL */
         #abdooo-btn {
             position: fixed; bottom: 32px; right: 32px; z-index: 2000;
             width: 58px; height: 58px; border-radius: 50%;
@@ -515,14 +539,25 @@
         #abdooo-btn svg { width: 26px; height: 26px; fill: #0a0a08; }
 
         #abdooo-bubble {
-            position: fixed; bottom: 104px; right: 32px; z-index: 2000;
-            background: #0a0a08; border: 1px solid #2a2a25;
-            border-radius: 16px 16px 4px 16px;
+            position: fixed; bottom: 102px; right: 24px; z-index: 2000;
+            background: #1a1a17; border: 1px solid #3dd68c;
+            border-radius: 12px 12px 12px 4px;
             padding: 10px 16px; font-size: 12px; color: #f0ece0;
             font-family: 'DM Sans', sans-serif;
             white-space: nowrap; pointer-events: none;
-            opacity: 0; transform: translateY(8px) scale(.95);
+            opacity: 0; transform: translateY(6px) scale(.95);
             transition: opacity .3s, transform .3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,.4);
+        }
+        #abdooo-bubble::after {
+            content: '';
+            position: absolute; bottom: -7px; left: 18px;
+            width: 12px; height: 12px;
+            background: #1a1a17;
+            border-right: 1px solid #3dd68c;
+            border-bottom: 1px solid #3dd68c;
+            transform: rotate(45deg);
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
         }
         #abdooo-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
 
@@ -538,6 +573,7 @@
         }
         #abdooo-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
 
+        /* HEADER */
         .abdooo-head {
             background: #111110; border-bottom: 1px solid #2a2a25;
             padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
@@ -556,6 +592,7 @@
         .abdooo-close { background: none; border: none; color: #6b6b60; font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; transition: color .2s; }
         .abdooo-close:hover { color: #f0ece0; }
 
+        /* MESSAGES */
         #abdooo-msgs {
             flex: 1; overflow-y: auto; padding: 18px 16px;
             display: flex; flex-direction: column; gap: 12px;
@@ -576,6 +613,7 @@
         .msg-time { font-size: 9px; letter-spacing: .1em; color: #6b6b60; padding: 0 4px; }
         .msg.user .msg-time { text-align: right; }
 
+        /* TYPING */
         .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
         .typing-indicator span {
             width: 7px; height: 7px; border-radius: 50%; background: #6b6b60;
@@ -585,6 +623,7 @@
         .typing-indicator span:nth-child(3) { animation-delay: .3s; }
         @keyframes typing-bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); background: var(--accent); } }
 
+        /* QUICK REPLIES */
         #abdooo-quick {
             padding: 0 16px 12px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0;
         }
@@ -596,6 +635,7 @@
         }
         .quick-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(61,214,140,.07); }
 
+        /* INPUT */
         .abdooo-foot {
             padding: 12px 14px; border-top: 1px solid #2a2a25;
             display: flex; gap: 10px; align-items: center; flex-shrink: 0;
@@ -623,6 +663,7 @@
         }
     </style>
 
+    <!-- ABDOOO BUTTON -->
     <button id="abdooo-btn" onclick="abdoooToggle()" aria-label="Chat with ABDOOO">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.23 5.12 3.18 6.79L4 22l4.55-1.52C9.61 20.81 10.78 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2zm0 16c-1.07 0-2.1-.18-3.06-.51l-.44-.15-2.7.9.64-2.59-.28-.4C4.96 14.01 4 12.57 4 11c0-3.87 3.58-7 8-7s8 3.13 8 7-3.58 7-8 7z"/>
@@ -631,6 +672,7 @@
 
     <div id="abdooo-bubble">👋 Salut ! Je suis ABDOOO, parle-moi !</div>
 
+    <!-- ABDOOO PANEL -->
     <div id="abdooo-panel">
         <div class="abdooo-head">
             <div class="abdooo-avatar">🤖</div>
@@ -660,6 +702,7 @@
     </div>
 
     <script>
+        // ─── ABDOOO AI ASSISTANT ───
         const ABDOOO_SYSTEM = `You are ABDOOO, a friendly and enthusiastic AI assistant embedded in Abderrahmane Oubella's personal portfolio website. Your job is to help visitors learn about Abderrahmane and his work.
 
 IMPORTANT LANGUAGE RULE: Detect the language of the user's message and ALWAYS reply in the SAME language. Support Arabic (الدارجة المغربية أو الفصحى), French, and English. If unsure, default to French.
@@ -734,6 +777,7 @@ YOUR PERSONALITY AS ABDOOO:
         let abdoooHistory = [];
         let bubbleTimer;
 
+        // Show bubble hint on load
         setTimeout(() => {
             const b = document.getElementById('abdooo-bubble');
             b.classList.add('show');
@@ -756,6 +800,7 @@ YOUR PERSONALITY AS ABDOOO:
             const div = document.createElement('div');
             div.className = `msg ${role}`;
             const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+            // Simple markdown: bold
             const rendered = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             div.innerHTML = `<div class="msg-bubble">${rendered}</div><div class="msg-time">${now}</div>`;
             msgs.appendChild(div);
@@ -776,37 +821,40 @@ YOUR PERSONALITY AS ABDOOO:
             const t = document.getElementById('abdooo-typing');
             if (t) t.remove();
         }
-async function abdoooSend() {
-    const input = document.getElementById('abdooo-input');
-    const text = input.value.trim();
-    if (!text) return;
 
-    input.value = '';
-    document.getElementById('abdooo-quick').style.display = 'none';
-    abdoooAddMsg('user', text);
-    abdoooTyping();
+        async function abdoooSend() {
+            const input = document.getElementById('abdooo-input');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+            document.getElementById('abdooo-quick').style.display = 'none';
+            abdoooAddMsg('user', text);
+            abdoooTyping();
 
-    try {
-        const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                messages: abdoooHistory.filter(m => m.role !== 'system') 
-            })
-        });
+            try {
+                const messages = abdoooHistory.slice(0, -1).map(m => ({ role: m.role, content: m.content }));
+                messages.push({ role: 'user', content: text });
 
-        const data = await res.json();
-        abdoooRemoveTyping();
-        
-        const reply = data.content?.[0]?.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
-        abdoooAddMsg('bot', reply);
-    } catch (err) {
-        abdoooRemoveTyping();
-        abdoooAddMsg('bot', "Oops, une erreur s'est produite. Essaie de contacter Abderrahmane directement à **abdooubella55@gmail.com** 📧");
-    }
-}
-       
-    
+                const res = await fetch('https://YOUR_VERCEL_URL/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: messages, system: ABDOOO_SYSTEM })
+                });
+
+                const data = await res.json();
+                abdoooRemoveTyping();
+                const reply = data.content?.[0]?.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
+                abdoooAddMsg('bot', reply);
+            } catch (err) {
+                abdoooRemoveTyping();
+                abdoooAddMsg('bot', "Oops, une erreur s'est produite. Essaie de contacter Abderrahmane directement à **abdooubella55@gmail.com** 📧");
+            }
+        }
+
+        function abdoooQuick(text) {
+            document.getElementById('abdooo-input').value = text;
+            abdoooSend();
+        }
     </script>
 </body>
 </html>
