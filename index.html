@@ -375,7 +375,7 @@
         <div class="skills-grid">
             <div class="skill-card reveal"><div class="sk-icon">🤖</div><h4 class="fr">IA & Innovation</h4><h4 class="en" style="display:none">AI & Innovation</h4><p class="fr">Maîtrise des outils d'IA générative. Animation d'ateliers IA pour jeunes publics.</p><p class="en" style="display:none">Proficiency in generative AI tools. AI literacy workshops for youth.</p></div>
             <div class="skill-card reveal"><div class="sk-icon">🌐</div><h4>Web Design</h4><p class="fr">Wix Studio, Affinity Designer. Formation et création de sites web professionnels.</p><p class="en" style="display:none">Wix Studio, Affinity Designer. Training and professional website creation.</p></div>
-            <div class="skill-card reveal"><div class="sk-icon">ⵣ</div><h4 class="fr">Langue Amazigh</h4><h4 class="en" style="display:none">Amazigh Language</h4><p class="fr">Expertise avancée en Tifinagh, grammaire générative et didactique Amazigh.</p><p class="en" style="display:none">Advanced expertise in Tifinagh, generative grammar and Amazigh didactics.</p></div>
+            <div class="skill-card reveal"><div class="sk-icon">⵿</div><h4 class="fr">Langue Amazigh</h4><h4 class="en" style="display:none">Amazigh Language</h4><p class="fr">Expertise avancée en Tifinagh, grammaire générative et didactique Amazigh.</p><p class="en" style="display:none">Advanced expertise in Tifinagh, generative grammar and Amazigh didactics.</p></div>
             <div class="skill-card reveal"><div class="sk-icon">🎓</div><h4 class="fr">Pédagogie STEAM</h4><h4 class="en" style="display:none">STEAM Pedagogy</h4><p class="fr">Cognitivisme, Constructivisme, Gestaltisme. Conception de matériaux éducatifs innovants.</p><p class="en" style="display:none">Cognitivism, Constructivism, Gestaltism. Innovative educational material design.</p></div>
             <div class="skill-card reveal"><div class="sk-icon">🎤</div><h4 class="fr">Prise de Parole</h4><h4 class="en" style="display:none">Public Speaking</h4><p class="fr">Animation d'événements scientifiques, présentations publiques et relations presse.</p><p class="en" style="display:none">Scientific event facilitation, public presentations and press relations.</p></div>
             <div class="skill-card reveal"><div class="sk-icon">♟️</div><h4 class="fr">Leadership</h4><h4 class="en" style="display:none">Leadership</h4><p class="fr">Gestion d'équipe, coordination d'événements, mentorat associatif et jeunesse.</p><p class="en" style="display:none">Team management, event coordination, associative and youth mentorship.</p></div>
@@ -405,8 +405,8 @@
                     <h3 class="exp-title en" style="display:none">Teaching Assistant</h3>
                     <p class="exp-org fr">École Benyouness El Ouartassi · Oujda</p>
                     <p class="exp-org en" style="display:none">Benyouness El Ouartassi School · Oujda</p>
-                    <ul class="exp-desc fr"><li>Observation et analyse des méthodologies d'enseignement en cycle primaire.</li><li>Soutien linguistique spécialisé Amazigh (Tifinagh).</li><li>Conception de matériaux pédagogiques interactifs et sessions de soutien scolaire.</li></ul>
-                    <ul class="exp-desc en" style="display:none"><li>Observation and analysis of primary education teaching methodologies.</li><li>Specialized linguistic support in Amazigh (Tifinagh).</li><li>Design of interactive learning materials and academic support sessions.</li></ul>
+                    <ul class="exp-desc fr"><li>Observation et analyse des méthodologies d'enseignement en cycle primaire.</li><li>Soutien linguistique spécialisé Amazigh (Tifinagh) et Arabe.</li><li>Conception de matériaux pédagogiques interactifs et sessions de soutien scolaire.</li></ul>
+                    <ul class="exp-desc en" style="display:none"><li>Observation and analysis of primary education teaching methodologies.</li><li>Specialized linguistic support in Amazigh (Tifinagh) and Arabic.</li><li>Design of interactive learning materials and academic support sessions.</li></ul>
                 </div>
                 <div class="exp-tags"><span class="exp-tag">Amazigh</span><span class="exp-tag">Tifinagh</span><span class="exp-tag">Arabe</span></div>
             </div>
@@ -448,6 +448,7 @@
         <p class="section-label fr">05 — Langues</p>
         <p class="section-label en" style="display:none">05 — Languages</p>
         <div class="lang-grid">
+            <div class="lang-card reveal"><div class="lang-name fr">Arabe</div><div class="lang-name en" style="display:none">Arabic</div><div class="lang-level fr">Maternelle</div><div class="lang-level en" style="display:none">Native</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
             <div class="lang-card reveal"><div class="lang-name">Amazigh</div><div class="lang-level fr">Maternelle</div><div class="lang-level en" style="display:none">Native</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
             <div class="lang-card reveal"><div class="lang-name fr">Français</div><div class="lang-name en" style="display:none">French</div><div class="lang-level">B2</div><div class="lang-bar"><div class="lang-fill" style="width:72%"></div></div></div>
             <div class="lang-card reveal"><div class="lang-name fr">Anglais</div><div class="lang-name en" style="display:none">English</div><div class="lang-level">B2</div><div class="lang-bar"><div class="lang-fill" style="width:72%"></div></div></div>
@@ -480,10 +481,8 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // NAV SCROLL
         function ns(e,id){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:'smooth'});}
 
-        // ACTIVE NAV
         const secs = document.querySelectorAll('section[id]');
         const navBtns = document.querySelectorAll('.nav-link');
         window.addEventListener('scroll', () => {
@@ -496,7 +495,6 @@
             });
         });
 
-        // LANG
         let isFr = true;
         function swapLang() {
             isFr = !isFr;
@@ -505,22 +503,17 @@
             document.getElementById('langBtn').textContent = isFr ? 'EN' : 'FR';
         }
 
-        // MOBILE
         function toggleMob() { document.getElementById('mobileNav').classList.toggle('open'); }
         function closeMob() { document.getElementById('mobileNav').classList.remove('open'); }
 
-        // REVEAL
         const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 
-    <!-- ═══════════════════════════════════════════
-         ABDOOO — AI ASSISTANT
-    ═══════════════════════════════════════════ -->
+  
     <style>
-        /* WIDGET SHELL */
         #abdooo-btn {
             position: fixed; bottom: 32px; right: 32px; z-index: 2000;
             width: 58px; height: 58px; border-radius: 50%;
@@ -572,7 +565,6 @@
         }
         #abdooo-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
 
-        /* HEADER */
         .abdooo-head {
             background: #111110; border-bottom: 1px solid #2a2a25;
             padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
@@ -591,7 +583,6 @@
         .abdooo-close { background: none; border: none; color: #6b6b60; font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; transition: color .2s; }
         .abdooo-close:hover { color: #f0ece0; }
 
-        /* MESSAGES */
         #abdooo-msgs {
             flex: 1; overflow-y: auto; padding: 18px 16px;
             display: flex; flex-direction: column; gap: 12px;
@@ -612,7 +603,6 @@
         .msg-time { font-size: 9px; letter-spacing: .1em; color: #6b6b60; padding: 0 4px; }
         .msg.user .msg-time { text-align: right; }
 
-        /* TYPING */
         .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
         .typing-indicator span {
             width: 7px; height: 7px; border-radius: 50%; background: #6b6b60;
@@ -634,7 +624,6 @@
         }
         .quick-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(61,214,140,.07); }
 
-        /* INPUT */
         .abdooo-foot {
             padding: 12px 14px; border-top: 1px solid #2a2a25;
             display: flex; gap: 10px; align-items: center; flex-shrink: 0;
@@ -662,7 +651,6 @@
         }
     </style>
 
-    <!-- ABDOOO BUTTON -->
     <button id="abdooo-btn" onclick="abdoooToggle()" aria-label="Chat with ABDOOO">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.23 5.12 3.18 6.79L4 22l4.55-1.52C9.61 20.81 10.78 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2zm0 16c-1.07 0-2.1-.18-3.06-.51l-.44-.15-2.7.9.64-2.59-.28-.4C4.96 14.01 4 12.57 4 11c0-3.87 3.58-7 8-7s8 3.13 8 7-3.58 7-8 7z"/>
@@ -671,7 +659,6 @@
 
     <div id="abdooo-bubble">👋 Salut ! Je suis ABDOOO, parle-moi !</div>
 
-    <!-- ABDOOO PANEL -->
     <div id="abdooo-panel">
         <div class="abdooo-head">
             <div class="abdooo-avatar">🤖</div>
@@ -701,7 +688,6 @@
     </div>
 
     <script>
-        // ─── ABDOOO AI ASSISTANT ───
         const ABDOOO_SYSTEM = `You are ABDOOO, a friendly and enthusiastic AI assistant embedded in Abderrahmane Oubella's personal portfolio website. Your job is to help visitors learn about Abderrahmane and his work.
 
 IMPORTANT LANGUAGE RULE: Detect the language of the user's message and ALWAYS reply in the SAME language. Support Arabic (الدارجة المغربية أو الفصحى), French, and English. If unsure, default to French.
@@ -776,7 +762,6 @@ YOUR PERSONALITY AS ABDOOO:
         let abdoooHistory = [];
         let bubbleTimer;
 
-        // Show bubble hint on load
         setTimeout(() => {
             const b = document.getElementById('abdooo-bubble');
             b.classList.add('show');
@@ -834,7 +819,7 @@ YOUR PERSONALITY AS ABDOOO:
                 const messages = abdoooHistory.slice(0, -1).map(m => ({ role: m.role, content: m.content }));
                 messages.push({ role: 'user', content: text });
 
-                const res = await fetch('https://abderrahmaneoubella-github-io.vercel.app/api/chat', {
+                const res = await fetch('https://YOUR_VERCEL_URL/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ messages: messages, system: ABDOOO_SYSTEM })
@@ -842,7 +827,7 @@ YOUR PERSONALITY AS ABDOOO:
 
                 const data = await res.json();
                 abdoooRemoveTyping();
-                const reply = data.content?.[0]?.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
+                const reply = data.text || "Désolé, je n'ai pas pu répondre. Réessaie ! 😅";
                 abdoooAddMsg('bot', reply);
             } catch (err) {
                 abdoooRemoveTyping();
