@@ -405,10 +405,10 @@
                     <h3 class="exp-title en" style="display:none">Teaching Assistant</h3>
                     <p class="exp-org fr">École Benyouness El Ouartassi · Oujda</p>
                     <p class="exp-org en" style="display:none">Benyouness El Ouartassi School · Oujda</p>
-                    <ul class="exp-desc fr"><li>Observation et analyse des méthodologies d'enseignement en cycle primaire.</li><li>Soutien linguistique spécialisé Amazigh (Tifinagh) et Arabe.</li><li>Conception de matériaux pédagogiques interactifs et sessions de soutien scolaire.</li></ul>
-                    <ul class="exp-desc en" style="display:none"><li>Observation and analysis of primary education teaching methodologies.</li><li>Specialized linguistic support in Amazigh (Tifinagh) and Arabic.</li><li>Design of interactive learning materials and academic support sessions.</li></ul>
+                    <ul class="exp-desc fr"><li>Observation et analyse des méthodologies d'enseignement en cycle primaire.</li><li>Soutien linguistique spécialisé Amazigh (Tifinagh).</li><li>Conception de matériaux pédagogiques interactifs et sessions de soutien scolaire.</li></ul>
+                    <ul class="exp-desc en" style="display:none"><li>Observation and analysis of primary education teaching methodologies.</li><li>Specialized linguistic support in Amazigh (Tifinagh) .</li><li>Design of interactive learning materials and academic support sessions.</li></ul>
                 </div>
-                <div class="exp-tags"><span class="exp-tag">Amazigh</span><span class="exp-tag">Tifinagh</span><span class="exp-tag">Arabe</span></div>
+                <div class="exp-tags"><span class="exp-tag">Amazigh</span><span class="exp-tag">Tifinagh</span></div>
             </div>
             <div class="exp-item reveal">
                 <div class="exp-year">19–21 Déc 2025</div>
@@ -470,7 +470,6 @@
                 <a href="tel:+212768050159" class="contact-link reveal"><div class="link-icon">📞</div><div><div class="link-label">Phone</div>(+212) 768 050 159</div></a>
                 <a href="https://linkedin.com/in/abderrahmane-oubella" target="_blank" class="contact-link reveal"><div class="link-icon">🔗</div><div><div class="link-label">LinkedIn</div><span class="fr">Mon profil LinkedIn</span><span class="en" style="display:none">LinkedIn Profile</span></div></a>
                 <div class="contact-link reveal" style="cursor:default"><div class="link-icon">📍</div><div><div class="link-label">Location</div>Casablanca / Oujda, Maroc</div></div>
-                <div class="contact-link reveal" style="cursor:default"><div class="link-icon">🚗</div><div><div class="link-label fr">Permis</div><div class="link-label en" style="display:none">Driving Licence</div><span class="fr">Permis B — Véhicule personnel</span><span class="en" style="display:none">Driving Licence B</span></div></div>
             </div>
         </div>
     </section>
@@ -481,8 +480,10 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // NAV SCROLL
         function ns(e,id){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:'smooth'});}
 
+        // ACTIVE NAV
         const secs = document.querySelectorAll('section[id]');
         const navBtns = document.querySelectorAll('.nav-link');
         window.addEventListener('scroll', () => {
@@ -495,6 +496,7 @@
             });
         });
 
+        // LANG
         let isFr = true;
         function swapLang() {
             isFr = !isFr;
@@ -503,17 +505,22 @@
             document.getElementById('langBtn').textContent = isFr ? 'EN' : 'FR';
         }
 
+        // MOBILE
         function toggleMob() { document.getElementById('mobileNav').classList.toggle('open'); }
         function closeMob() { document.getElementById('mobileNav').classList.remove('open'); }
 
+        // REVEAL
         const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 
-  
+    <!-- ═══════════════════════════════════════════
+         ABDOOO — AI ASSISTANT
+    ═══════════════════════════════════════════ -->
     <style>
+        /* WIDGET SHELL */
         #abdooo-btn {
             position: fixed; bottom: 32px; right: 32px; z-index: 2000;
             width: 58px; height: 58px; border-radius: 50%;
@@ -565,6 +572,7 @@
         }
         #abdooo-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
 
+        /* HEADER */
         .abdooo-head {
             background: #111110; border-bottom: 1px solid #2a2a25;
             padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
@@ -583,6 +591,7 @@
         .abdooo-close { background: none; border: none; color: #6b6b60; font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; transition: color .2s; }
         .abdooo-close:hover { color: #f0ece0; }
 
+        /* MESSAGES */
         #abdooo-msgs {
             flex: 1; overflow-y: auto; padding: 18px 16px;
             display: flex; flex-direction: column; gap: 12px;
@@ -603,6 +612,7 @@
         .msg-time { font-size: 9px; letter-spacing: .1em; color: #6b6b60; padding: 0 4px; }
         .msg.user .msg-time { text-align: right; }
 
+        /* TYPING */
         .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
         .typing-indicator span {
             width: 7px; height: 7px; border-radius: 50%; background: #6b6b60;
@@ -624,6 +634,7 @@
         }
         .quick-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(61,214,140,.07); }
 
+        /* INPUT */
         .abdooo-foot {
             padding: 12px 14px; border-top: 1px solid #2a2a25;
             display: flex; gap: 10px; align-items: center; flex-shrink: 0;
@@ -651,6 +662,7 @@
         }
     </style>
 
+    <!-- ABDOOO BUTTON -->
     <button id="abdooo-btn" onclick="abdoooToggle()" aria-label="Chat with ABDOOO">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.03 2 11c0 2.7 1.23 5.12 3.18 6.79L4 22l4.55-1.52C9.61 20.81 10.78 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2zm0 16c-1.07 0-2.1-.18-3.06-.51l-.44-.15-2.7.9.64-2.59-.28-.4C4.96 14.01 4 12.57 4 11c0-3.87 3.58-7 8-7s8 3.13 8 7-3.58 7-8 7z"/>
@@ -659,6 +671,7 @@
 
     <div id="abdooo-bubble">👋 Salut ! Je suis ABDOOO, parle-moi !</div>
 
+    <!-- ABDOOO PANEL -->
     <div id="abdooo-panel">
         <div class="abdooo-head">
             <div class="abdooo-avatar">🤖</div>
@@ -688,6 +701,7 @@
     </div>
 
     <script>
+        // ─── ABDOOO AI ASSISTANT ───
         const ABDOOO_SYSTEM = `You are ABDOOO, a friendly and enthusiastic AI assistant embedded in Abderrahmane Oubella's personal portfolio website. Your job is to help visitors learn about Abderrahmane and his work.
 
 IMPORTANT LANGUAGE RULE: Detect the language of the user's message and ALWAYS reply in the SAME language. Support Arabic (الدارجة المغربية أو الفصحى), French, and English. If unsure, default to French.
@@ -762,6 +776,7 @@ YOUR PERSONALITY AS ABDOOO:
         let abdoooHistory = [];
         let bubbleTimer;
 
+        // Show bubble hint on load
         setTimeout(() => {
             const b = document.getElementById('abdooo-bubble');
             b.classList.add('show');
@@ -819,7 +834,7 @@ YOUR PERSONALITY AS ABDOOO:
                 const messages = abdoooHistory.slice(0, -1).map(m => ({ role: m.role, content: m.content }));
                 messages.push({ role: 'user', content: text });
 
-            const res = await fetch('https://abderrahmaneoubella-github-io.vercel.app/api/chat', {
+                const res = await fetch('https://abderrahmaneoubella-github-945y2t5nb.vercel.app/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ messages: messages, system: ABDOOO_SYSTEM })
